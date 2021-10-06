@@ -17,6 +17,10 @@
 # Networkstack certificate
 PRODUCT_MAINLINE_SEPOLICY_DEV_CERTIFICATES := vendor/cherish/apex/NetworkStack
 
+# Prebuilt module SDKs require prebuilt modules to work, and currently
+# prebuilt modules are only provided for com.google.android.xxx.
+MODULE_BUILD_FROM_SOURCE := false
+
 # Enable Google Play system updates support
 PRODUCT_SOONG_NAMESPACES += \
     vendor/cherish/apex
@@ -27,7 +31,7 @@ PRODUCT_PACKAGES += \
 
 # Google Apexes
 PRODUCT_PACKAGES += \
-    com.google.android.adbd \
+        com.google.android.adbd \
 	com.google.android.appsearch \
 	com.google.android.art \
 	com.google.android.cellbroadcast \

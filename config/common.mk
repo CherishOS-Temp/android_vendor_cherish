@@ -1,7 +1,5 @@
 PRODUCT_BRAND ?= CherishOS
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.clientidbase=android-google
@@ -9,6 +7,30 @@ else
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
 endif
+
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.build.selinux=1 \
+    persist.sys.disable_rescue=true
+
+# SetupWizard configuration
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.setupwizard.esim_cid_ignore=00000001 \
+    ro.setupwizard.rotation_locked=true \
+    setupwizard.feature.baseline_setupwizard_enabled=true \
+    setupwizard.feature.day_night_mode_enabled=true \
+    setupwizard.feature.portal_notification=true \
+    setupwizard.feature.show_pai_screen_in_main_flow.carrier1839=false \
+    setupwizard.feature.show_pixel_tos=true \
+    setupwizard.feature.show_support_link_in_deferred_setup=false \
+    setupwizard.feature.skip_button_use_mobile_data.carrier1839=true \
+    setupwizard.theme=glif_v3_light
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable ADB authentication
@@ -20,6 +42,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
 # Disable extra StrictMode features on all non-engineering builds
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
+
+# GBoard
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.ime.kb_pad_port_b=1
 
 # Enable WiFi Display
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -274,16 +300,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.device_config.runtime_native_boot.iorap_readahead_enable=true \
     ro.iorapd.enable=true
 
+# Google Apps
+include vendor/cherish/config/gapps.mk
+
 # OTA
 $(call inherit-product, vendor/cherish/config/ota.mk)
-
-# GApps
-ifeq ($(WITH_GMS),true)
-$(call inherit-product, vendor/cherish/config/gapps.mk)
-else
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/cherish/overlay-aosp
-DEVICE_PACKAGE_OVERLAYS += vendor/cherish/overlay-aosp/common
-endif
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/cherish/overlay
 DEVICE_PACKAGE_OVERLAYS += vendor/cherish/overlay/common

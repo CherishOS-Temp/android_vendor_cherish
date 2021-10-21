@@ -89,6 +89,16 @@ include vendor/cherish/config/cherish_audio.mk
 # Include CherishOS Themes Styles
 #include vendor/themes/themes.mk
 
+# Pixel customization
+TARGET_SUPPORTS_GOOGLE_RECORDER ?= true
+TARGET_INCLUDE_STOCK_ARCORE ?= true
+TARGET_INCLUDE_LIVE_WALLPAPERS ?= true
+TARGET_SUPPORTS_QUICK_TAP ?= false
+ifeq ($(TARGET_INCLUDE_LIVE_WALLPAPERS),true)
+PRODUCT_PACKAGES += \
+    PixelLiveWallpapersOverlay
+endif
+
 # Plugins
 #include packages/apps/PotatoPlugins/plugins.mk
 

@@ -53,6 +53,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
 
+# Blur
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.launcher.blur.appLaunch=false
+
 # Enable one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true

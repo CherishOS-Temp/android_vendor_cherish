@@ -1,4 +1,9 @@
+<<<<<<< HEAD:build/target/product/cherish_generic_target.mk
 # Copyright (C) 2019-2020 The CherishOS
+=======
+#
+# Copyright (C) 2021 CitricOS
+>>>>>>> af6142f70 (vendor: citric: Add Google Play System Update Support):config/BoardConfigCitric.mk
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

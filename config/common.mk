@@ -307,6 +307,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Google Apps
 include vendor/cherish/config/gapps.mk
 
+# Inherit from apex config
+include vendor/cherish/config/apex.mk
+
 # OTA
 $(call inherit-product, vendor/cherish/config/ota.mk)
 

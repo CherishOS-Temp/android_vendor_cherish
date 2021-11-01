@@ -307,6 +307,9 @@ include vendor/cherish/config/gapps.mk
 # Inherit from apex config
 include vendor/cherish/config/apex.mk
 
+# Fonts
+include vendor/cherish/config/fonts.mk
+
 # OTA
 $(call inherit-product, vendor/cherish/config/ota.mk)
 

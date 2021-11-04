@@ -276,10 +276,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OTA
 $(call inherit-product, vendor/cherish/config/ota.mk)
-
+$(call inherit-product, vendor/cherish/config/fonts.mk)
+$(call inherit-product, vendor/cherish/config/gfonts.mk)
 # GApps
 ifeq ($(WITH_GMS),true)
 $(call inherit-product, vendor/cherish/config/gapps.mk)
+$(call inherit-product, vendor/cherish/config/apex.mk)
 else
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/cherish/overlay-aosp
 DEVICE_PACKAGE_OVERLAYS += vendor/cherish/overlay-aosp/common

@@ -49,9 +49,14 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/cherish/overlay-pixel
 DEVICE_PACKAGE_OVERLAYS += vendor/cherish/overlay-pixel/common
 
 # Pixel customization
-TARGET_SUPPORTS_GOOGLE_RECORDER ?= true
+TARGET_SUPPORTS_GOOGLE_RECORDER ?= false
 TARGET_INCLUDE_STOCK_ARCORE ?= true
 TARGET_INCLUDE_LIVE_WALLPAPERS ?= true
+TARGET_SUPPORTS_QUICK_TAP ?= true
+ifeq ($(TARGET_INCLUDE_LIVE_WALLPAPERS),true)
+PRODUCT_PACKAGES += \
+    PixelLiveWallpapersOverlay
+endif
 
 # TextClassifier
 PRODUCT_PACKAGES += \

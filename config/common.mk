@@ -304,6 +304,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Google Apps
 include vendor/cherish/config/gapps.mk
 
+# Fonts
+include vendor/cherish/config/fonts.mk
+
 # OTA
 $(call inherit-product, vendor/cherish/config/ota.mk)
 

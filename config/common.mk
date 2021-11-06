@@ -15,7 +15,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.build.selinux=1 \
     persist.sys.disable_rescue=true
 
 # SetupWizard configuration
@@ -31,6 +30,13 @@ PRODUCT_PRODUCT_PROPERTIES += \
     setupwizard.feature.show_support_link_in_deferred_setup=false \
     setupwizard.feature.skip_button_use_mobile_data.carrier1839=true \
     setupwizard.theme=glif_v3_light
+	
+# TextClassifier
+PRODUCT_PACKAGES += \
+	libtextclassifier_annotator_en_model \
+	libtextclassifier_annotator_universal_model \
+	libtextclassifier_actions_suggestions_universal_model \
+	libtextclassifier_lang_id_model
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable ADB authentication
@@ -310,7 +316,12 @@ include vendor/cherish/config/fonts.mk
 # OTA
 $(call inherit-product, vendor/cherish/config/ota.mk)
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/cherish/overlay
-DEVICE_PACKAGE_OVERLAYS += vendor/cherish/overlay/common
+# Overlays
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    vendor/cherish/overlay
+
+PRODUCT_PACKAGE_OVERLAYS += \
+    vendor/cherish/overlay/common
+
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 -include vendor/cherish/config/partner_gms.mk

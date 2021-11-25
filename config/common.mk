@@ -155,6 +155,10 @@ endif
 #PRODUCT_PACKAGES += \
     OmniStyle
 
+# Hide nav Overlays
+PRODUCT_PACKAGES += \
+    NavigationBarModeGesturalOverlayFS 
+
 # Cutout control overlays
 PRODUCT_PACKAGES += \
     HideCutout \
